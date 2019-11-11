@@ -8,8 +8,6 @@ class Input extends Component {
   addURL = () => {
     const inputURL = document.getElementById("urlInput").value;
     if (inputURL !== "") this.props.setUnReadUrlLists(inputURL);
-    this.props.setCurrentView("LIST");
-    console.log("ADD Un Read URL");
   };
 
   render() {
@@ -26,15 +24,10 @@ class Input extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentView: state.currentView
-  };
-};
 const mapDispatchToProps = dispatch => {
   return {
     setCurrentView: newView => dispatch(changeCurrentView(newView)),
     setUnReadUrlLists: inputURL => dispatch(addUnReadUrlLists(inputURL))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Input);
+export default connect(null, mapDispatchToProps)(Input);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Input from "./Input.jsx";
 import "../styles/styles.css";
 
 class ReadContents extends Component {
@@ -8,12 +9,7 @@ class ReadContents extends Component {
 
     return (
       <div className="contents readContents">
-        <div className="inputArea">
-          <label>
-            <input type="url" name="url" id="urlInput" />
-          </label>
-          <button className="btn">ADD</button>
-        </div>
+        <Input />
         <div className="urllistArea">
           {readUrlLists.map((readUrlList, i) => (
             <div className="urlList" key={i}>
