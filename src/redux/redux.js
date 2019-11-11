@@ -4,8 +4,42 @@ import thunk from "redux-thunk";
 // initial STATE
 const initialState = {
   currentView: "LIST",
-  unReadUrlLists: [],
-  ReadUrlLists: []
+  unReadUrlLists: [
+    {
+      url: "https://www.starbucks.co.jp/",
+      name: "HOMEPAGE - STARBUCK JAPAN",
+      date: "201911112056"
+    },
+    {
+      url: "https://stories.starbucks.com/",
+      name: "HOMEPAGE - STARBUCK US",
+      date: "201911101245"
+    },
+    {
+      url:
+        "https://stories.starbucks.com/stories/2019/make-merry-at-starbucks-this-holiday/",
+      name: "Make merry at Starbucks this holiday season",
+      date: "201911111034"
+    }
+  ],
+  readUrlLists: [
+    {
+      url: "https://martinfowler.com/bliki/ContinuousDelivery.html",
+      name: "ContinuousDelivery",
+      date: "20191105100"
+    },
+    {
+      url: "https://will.koffel.org/post/2014/12-factor-apps-in-plain-english/",
+      name: "12 FACTOR APPS IN PLAIN ENGLISH",
+      date: "201911091710"
+    },
+    {
+      url:
+        "https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2",
+      name: "How Redux Connect compares to the new Redux Hooks.",
+      date: "201911011840"
+    }
+  ]
 };
 
 // ACTIONS
@@ -33,6 +67,11 @@ export const getReadUrlLists = getReadList => ({
   type: "GET_READ_URL_LISTS",
   getReadList
 });
+
+// ACTION CREATER
+// export const getUnReadUrlListsAsync = dispatch => {
+//   const
+// }
 
 // REDUCERS
 const reducer = (state = initialState, action) => {

@@ -33,7 +33,7 @@ body {
   margin: 20px auto;
   padding: 5px;
 }
-.url {
+.urlInput {
   border: 0;
   padding: 10px;
   font-size: 1.3em;
@@ -70,6 +70,8 @@ body {
   height: 35px;
   margin: 5px 0;
   background: #cbcbcb;
+  display: flex;
+  justify-content: space-between;
 }
 input[type="url"]:focus,
 input[type="button"]:focus,

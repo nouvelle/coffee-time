@@ -5,15 +5,12 @@ import "../styles/styles.css";
 
 class Header extends Component {
   changeViewList = () => {
-    console.log("Change to LIST");
     this.props.setCurrentView("LIST");
   };
   changeViewRead = () => {
-    console.log("Change to READ");
     this.props.setCurrentView("READ");
   };
   changeViewHistory = () => {
-    console.log("Change to HISTORY");
     this.props.setCurrentView("HISTORY");
   };
 

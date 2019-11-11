@@ -1,21 +1,37 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "../styles/styles.css";
 
-export default class ReadContents extends Component {
+class ReadContents extends Component {
   render() {
+    const readUrlLists = this.props.readUrlLists;
+
     return (
       <div className="contents readContents">
         <div className="inputArea">
           <label>
-            <input type="url" name="url" className="url" />
+            <input type="url" name="url" className="urlInput" />
           </label>
           <button className="btn">ADD</button>
         </div>
         <div className="urllistArea">
-          <div className="urlList">read - aaa</div>
-          <div className="urlList">read - bbb</div>
+          {readUrlLists.map((readUrlList, i) => (
+            <div className="urlList" key={i}>
+              <div className="url">
+                <a href={`${readUrlList.url}`}>{readUrlList.name}</a>
+              </div>
+              <div className="date">{readUrlList.date}</div>
+            </div>
+          ))}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    readUrlLists: state.readUrlLists
+  };
+};
+export default connect(mapStateToProps)(ReadContents);

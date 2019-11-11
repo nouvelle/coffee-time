@@ -4,6 +4,7 @@ import Header from "./Header.jsx";
 import ListContents from "./ListContents.jsx";
 import ReadContents from "./ReadContents.jsx";
 import HistoryContents from "./HistoryContents.jsx";
+// import { getUnReadUrlListsAsync } from "../redux/redux";
 import "../styles/styles.css";
 
 class App extends Component {
@@ -13,6 +14,10 @@ class App extends Component {
       currentView: "List",
       urlLists: []
     };
+  }
+
+  componentDidMount() {
+    // this.props.getUnReadUrlListsAsync();
   }
 
   render() {
@@ -42,5 +47,11 @@ const mapStateToProps = state => {
     currentView: state.currentView
   };
 };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getUnReadUrlListsAsync: () => dispatch(getUnReadUrlListsAsync)
+//   };
+// };
 
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps)(App);
