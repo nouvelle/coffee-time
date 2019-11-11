@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Header from "./Header.jsx";
+import Contents from "./Contents.jsx";
+import "../styles/styles.css";
 
 export default class App extends Component {
   constructor(props) {
@@ -12,7 +15,11 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Hello, it's coffee time!</div>
+        <div className="app">
+          <Header className="header" />
+          <h1>Hello, it's coffee time!</h1>
+          <Contents className="contents" />
+        </div>
       </div>
     );
   }
