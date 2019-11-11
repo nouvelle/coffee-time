@@ -10,7 +10,7 @@ class ReadContents extends Component {
       <div className="contents readContents">
         <div className="inputArea">
           <label>
-            <input type="url" name="url" className="urlInput" />
+            <input type="url" name="url" id="urlInput" />
           </label>
           <button className="btn">ADD</button>
         </div>

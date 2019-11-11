@@ -50,7 +50,9 @@ export const changeCurrentView = newView => ({
 
 export const addUnReadUrlLists = newUnReadList => ({
   type: "ADD_UNREAD_URL_LISTS",
-  newUnReadList
+  unReadList: newUnReadList,
+  name: "DEFAULT NAME",
+  date: String(new Date())
 });
 
 export const addReadUrlLists = newReadList => ({
@@ -80,7 +82,17 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { currentView: action.newView });
     }
     case "ADD_UNREAD_URL_LISTS": {
-      return state;
+      console.log(state);
+      return Object.assign({}, state, {
+        unReadUrlLists: [
+          ...state.unReadUrlLists,
+          {
+            url: action.unReadList,
+            name: action.name,
+            date: action.date
+          }
+        ]
+      });
     }
     case "ADD_READ_URL_LISTS": {
       return state;

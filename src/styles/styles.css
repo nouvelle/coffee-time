@@ -33,7 +33,7 @@ body {
   margin: 20px auto;
   padding: 5px;
 }
-.urlInput {
+#urlInput {
   border: 0;
   padding: 10px;
   font-size: 1.3em;

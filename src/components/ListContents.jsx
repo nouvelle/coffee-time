@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Input from "./Input.jsx";
 import "../styles/styles.css";
 
 class ListContents extends Component {
@@ -8,13 +9,9 @@ class ListContents extends Component {
 
     return (
       <div className="contents listContents">
-        <div className="inputArea">
-          <label>
-            <input type="url" name="url" className="urlInput" />
-          </label>
-          <button className="btn">ADD</button>
-        </div>
+        <Input />
         <div className="urllistArea">
+          {console.log(unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
             <div className="urlList" key={i}>
               <div className="url">
@@ -34,4 +31,5 @@ const mapStateToProps = state => {
     unReadUrlLists: state.unReadUrlLists
   };
 };
+
 export default connect(mapStateToProps)(ListContents);
