@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 
 // initial STATE
 const initialState = {
-  currentView: "List",
+  currentView: "LIST",
   unReadUrlLists: [],
   ReadUrlLists: []
 };

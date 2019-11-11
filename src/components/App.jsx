@@ -23,7 +23,7 @@ class App extends Component {
           <h1>Hello, it's coffee time!</h1>
 
           {(() => {
-            if (this.props.currentView === "List") {
+            if (this.props.currentView === "LIST") {
               return <ListContents />;
             } else if (this.props.currentView === "READ") {
               return <ReadContents />;
