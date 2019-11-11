@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <title>Coffee Time</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Comfortaa", cursive;
+      }
+      .app {
+        width: 100%;
+      }
+      .header {
+        height: 60px;
+        /* background: #2f6443; */
+        background: #270c03;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .link {
+        color: #fff;
+        font-size: 24px;
+        margin: 20px;
+      }
+      .contents {
+        height: 500px;
+        padding: 10px;
+        /* background: #d73a38; */
+        background: #eee;
+      }
+      .inputArea {
+        width: 90%;
+        height: 70px;
+        line-height: 70px;
+        vertical-align: middle;
+        background: #fff;
+        margin: 20px auto;
+        padding: 5px;
+      }
+      .url {
+        border: 0;
+        padding: 10px;
+        font-size: 1.3em;
+        color: #270c03;
+        border: solid 1px #ccc;
+        width: 80%;
+        height: 45px;
+      }
+      .btn {
+        position: relative;
+        top: -5px;
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background: #3b8a59;
+        color: #fff;
+        border-bottom: solid 4px #2f6443;
+        border-radius: 3px;
+        width: 100px;
+        height: 46px;
+        margin-left: 20px;
+      }
+      .btn:active {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+        border-bottom: none;
+      }
+      .urllistArea {
+        width: 90%;
+        background: #fff;
+        margin: 20px auto;
+      }
+      .urlList {
+        height: 35px;
+        margin: 5px 0;
+        background: #cbcbcb;
+      }
+      input[type="url"]:focus,
+      input[type="button"]:focus,
+      .btn:focus {
+        outline: 0;
+      }
+      input[type="url"]:focus {
+        background: #ececec;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="app">
+        <div class="header">
+          <div class="listLink link">LIST</div>
+          <div class="readLink link">READ</div>
+          <div class="historyLink link">HISTORY</div>
+        </div>
+        <div class="contents">
+          <div class="inputArea">
+            <label><input type="url" name="url" class="url"/></label>
+            <button class="btn">ADD</button>
+          </div>
+          <div class="urllistArea">
+            <div class="urlList">aaa</div>
+            <div class="urlList">bbb</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

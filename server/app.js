@@ -14,11 +14,19 @@ app.use(
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
+app.get("/api", async (req, res) => {
+  try {
+    res.send("Hello Coffee! - /api");
+  } catch (err) {
+    console.error("Error loading locations!", err);
+    res.sendStatus(500);
+  }
+});
 app.get("/api/urllist", async (req, res) => {
   try {
     // const locations = await db.select().table("locations");
     // res.json(locations);
-    res.send("Hello Coffee!");
+    res.send("Hello Coffee! - /api/urllist");
   } catch (err) {
     console.error("Error loading locations!", err);
     res.sendStatus(500);
