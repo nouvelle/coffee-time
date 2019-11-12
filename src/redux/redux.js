@@ -33,18 +33,21 @@ const initialState = {
     {
       url: "https://martinfowler.com/bliki/ContinuousDelivery.html",
       name: "ContinuousDelivery",
-      date: "20191105100"
+      date: "201911051000",
+      readDate: "201911061000"
     },
     {
       url: "https://will.koffel.org/post/2014/12-factor-apps-in-plain-english/",
       name: "12 FACTOR APPS IN PLAIN ENGLISH",
-      date: "201911091710"
+      date: "201911091710",
+      readDate: "201911061100"
     },
     {
       url:
         "https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2",
       name: "How Redux Connect compares to the new Redux Hooks.",
-      date: "201911011840"
+      date: "201911011840",
+      readDate: "201911061100"
     }
   ]
 };
@@ -75,7 +78,8 @@ export const toggleUnReadUrlCheckBox = index => ({
 
 export const addReadUrlLists = newReadList => ({
   type: "ADD_READ_URL_LISTS",
-  newReadList
+  newReadList,
+  readDate: String(new Date())
 });
 
 export const getUnReadUrlLists = getUnReadList => ({
@@ -134,7 +138,18 @@ const reducer = (state = initialState, action) => {
       });
     }
     case "ADD_READ_URL_LISTS": {
-      return state;
+      const clone = state.readUrlLists.concat();
+      action.newReadList.forEach(list => {
+        clone.push({
+          url: list.url,
+          name: list.name,
+          date: list.date,
+          readDate: action.readDate
+        });
+      });
+      return Object.assign({}, state, {
+        readUrlLists: clone
+      });
     }
     case "GET_UNREAD_URL_LISTS": {
       return state;

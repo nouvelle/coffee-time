@@ -9,6 +9,7 @@ class ReadContents extends Component {
     return (
       <div className="contents readContents">
         <div className="urllistArea">
+          {console.log("all READ list", readUrlLists)}
           {readUrlLists.map((readUrlList, i) => (
             <div className="urlList" key={i}>
               <div className="url">

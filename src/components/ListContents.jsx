@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "./Input.jsx";
-import { toggleUnReadUrlCheckBox, deleteUnReadUrlLists } from "../redux/redux";
+import {
+  toggleUnReadUrlCheckBox,
+  deleteUnReadUrlLists,
+  addReadUrlLists
+} from "../redux/redux";
 import "../styles/styles.css";
 
 class ListContents extends Component {
@@ -16,12 +20,19 @@ class ListContents extends Component {
     this.props.changeUnReadUrlCheckBox(index);
   };
   changeRead = () => {
+    // DELETE FROM UN READ LIST
     const unReadUrlLists = this.props.unReadUrlLists;
     const nonDeleteList = unReadUrlLists.filter(
       unReadUrlList => !unReadUrlList.checked
     );
     if (nonDeleteList.length !== unReadUrlLists.length)
       this.props.deleteUnReadUrlLists(nonDeleteList);
+
+    // ADD TO READ LIST
+    const newReadList = unReadUrlLists.filter(
+      unReadUrlList => unReadUrlList.checked
+    );
+    this.props.addReadUrlLists(newReadList);
   };
   render() {
     const unReadUrlLists = this.props.unReadUrlLists;
@@ -67,7 +78,8 @@ const mapDispatchToProps = dispatch => {
   return {
     changeUnReadUrlCheckBox: index => dispatch(toggleUnReadUrlCheckBox(index)),
     deleteUnReadUrlLists: nonDeleteList =>
-      dispatch(deleteUnReadUrlLists(nonDeleteList))
+      dispatch(deleteUnReadUrlLists(nonDeleteList)),
+    addReadUrlLists: newReadList => dispatch(addReadUrlLists(newReadList))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ListContents);
