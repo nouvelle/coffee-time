@@ -4,22 +4,29 @@ import thunk from "redux-thunk";
 // initial STATE
 const initialState = {
   currentView: "LIST",
+  checkedUnRead: [],
   unReadUrlLists: [
     {
+      index: 0,
       url: "https://www.starbucks.co.jp/",
       name: "HOMEPAGE - STARBUCK JAPAN",
-      date: "201911112056"
+      date: "201911112056",
+      checked: true
     },
     {
+      index: 1,
       url: "https://stories.starbucks.com/",
       name: "HOMEPAGE - STARBUCK US",
-      date: "201911101245"
+      date: "201911101245",
+      checked: false
     },
     {
+      index: 2,
       url:
         "https://stories.starbucks.com/stories/2019/make-merry-at-starbucks-this-holiday/",
       name: "Make merry at Starbucks this holiday season",
-      date: "201911111034"
+      date: "201911111034",
+      checked: false
     }
   ],
   readUrlLists: [
@@ -52,7 +59,13 @@ export const addUnReadUrlLists = newUnReadList => ({
   type: "ADD_UNREAD_URL_LISTS",
   unReadList: newUnReadList,
   name: "DEFAULT NAME",
-  date: String(new Date())
+  date: String(new Date()),
+  checked: false
+});
+
+export const toggleUnReadUrlCheckBox = newStatus => ({
+  type: " TOGGLE_UNREAD_CHECK_BOX",
+  newStatus
 });
 
 export const addReadUrlLists = newReadList => ({
@@ -82,14 +95,29 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { currentView: action.newView });
     }
     case "ADD_UNREAD_URL_LISTS": {
-      console.log(state);
+      return Object.assign({}, state, {
+        unReadUrlLists: [
+          ...state.unReadUrlLists,
+          {
+            index:
+              state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
+            url: action.unReadList,
+            name: action.name,
+            date: action.date,
+            checked: action.checked
+          }
+        ]
+      });
+    }
+    case "TOGGLE_UNREAD_CHECK_BOX": {
       return Object.assign({}, state, {
         unReadUrlLists: [
           ...state.unReadUrlLists,
           {
             url: action.unReadList,
             name: action.name,
-            date: action.date
+            date: action.date,
+            checked: action.checked
           }
         ]
       });

@@ -5,6 +5,9 @@ import Input from "./Input.jsx";
 import "../styles/styles.css";
 
 class ListContents extends Component {
+  checkBtn = date => {
+    // console.log(date);
+  };
   render() {
     const unReadUrlLists = this.props.unReadUrlLists;
 
@@ -12,17 +15,14 @@ class ListContents extends Component {
       <div className="contents listContents">
         <Input />
         <div className="urllistArea">
-          {console.log(unReadUrlLists)}
+          {console.log("aa", unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
             <div className="urlList" key={i}>
               <Checkbox
-                // checked={state.checkedB}
-                // onChange={handleChange("checkedB")}
-                value="checkedB"
+                checked={unReadUrlList.checked}
+                onClick={this.checkBtn(unReadUrlList.date)}
+                // value="checkedB"
                 color="primary"
-                inputProps={{
-                  "aria-label": "secondary checkbox"
-                }}
               />
               <div className="url">
                 <a href={`${unReadUrlList.url}`}>{unReadUrlList.name}</a>
