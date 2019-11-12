@@ -25,6 +25,9 @@ body {
   /* background: #d73a38; */
   background: #eee;
 }
+.changeRead {
+  text-align: center;
+}
 .inputArea {
   width: 90%;
   height: 70px;
