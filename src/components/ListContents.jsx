@@ -43,7 +43,7 @@ class ListContents extends Component {
     this.props.addReadUrlLists(newReadList);
   };
   changeDate = date => {
-    const d = new Date(date);
+    const d = new Date(Number(date));
     const dispDate = d.toLocaleDateString();
     return dispDate;
   };

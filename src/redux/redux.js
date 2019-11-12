@@ -1,55 +1,13 @@
 import { createStore, applyMiddleware } from "redux";
+import axios from "axios";
 import thunk from "redux-thunk";
 
 // initial STATE
 const initialState = {
   currentView: "LIST",
   checkedUnRead: [],
-  unReadUrlLists: [
-    {
-      index: 0,
-      url: "https://www.starbucks.co.jp/",
-      name: "HOMEPAGE - STARBUCK JAPAN",
-      date: 1573550388676,
-      checked: true
-    },
-    {
-      index: 1,
-      url: "https://stories.starbucks.com/",
-      name: "HOMEPAGE - STARBUCK US",
-      date: 1573550405225,
-      checked: false
-    },
-    {
-      index: 2,
-      url:
-        "https://stories.starbucks.com/stories/2019/make-merry-at-starbucks-this-holiday/",
-      name: "Make merry at Starbucks this holiday season",
-      date: 1573550405225,
-      checked: false
-    }
-  ],
-  readUrlLists: [
-    {
-      url: "https://martinfowler.com/bliki/ContinuousDelivery.html",
-      name: "ContinuousDelivery",
-      date: 1573550388676,
-      readDate: 1573550405225
-    },
-    {
-      url: "https://will.koffel.org/post/2014/12-factor-apps-in-plain-english/",
-      name: "12 FACTOR APPS IN PLAIN ENGLISH",
-      date: 1573550388676,
-      readDate: 1573550405225
-    },
-    {
-      url:
-        "https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2",
-      name: "How Redux Connect compares to the new Redux Hooks.",
-      date: 1573550388676,
-      readDate: 1573550405225
-    }
-  ]
+  unReadUrlLists: [],
+  readUrlLists: []
 };
 
 // ACTIONS
@@ -60,10 +18,8 @@ export const changeCurrentView = newView => ({
 
 export const addUnReadUrlLists = newUnReadList => ({
   type: "ADD_UNREAD_URL_LISTS",
-  unReadList: newUnReadList,
-  name: "DEFAULT NAME",
-  date: Date.now(),
-  checked: false
+  newUnReadList,
+  date: Date.now()
 });
 
 export const deleteUnReadUrlLists = nonDeleteUnReadListArr => ({
@@ -93,9 +49,10 @@ export const getReadUrlLists = getReadList => ({
 });
 
 // ACTION CREATER
-// export const getUnReadUrlListsAsync = dispatch => {
-//   const
-// }
+export const getUnReadUrlListsAsync = async dispatch => {
+  const urllist = await axios.get("http://localhost:9000/api/urllist");
+  return dispatch(addUnReadUrlLists(urllist.data));
+};
 
 // REDUCERS
 const reducer = (state = initialState, action) => {
@@ -106,19 +63,36 @@ const reducer = (state = initialState, action) => {
     case "ADD_UNREAD_URL_LISTS": {
       if (state.unReadUrlLists.length === 0)
         state.unReadUrlLists = initialState.unReadUrlLists;
-      return Object.assign({}, state, {
-        unReadUrlLists: [
-          ...state.unReadUrlLists,
-          {
-            index:
-              state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
-            url: action.unReadList,
-            name: action.name,
-            date: action.date,
-            checked: action.checked
-          }
-        ]
-      });
+
+      if (Array.isArray(action.newUnReadList)) {
+        const clone = state.unReadUrlLists.concat();
+        action.newUnReadList.forEach(list => {
+          clone.push({
+            index: list.id,
+            url: list.URL,
+            name: list.name,
+            date: list.date,
+            checked: list.checked
+          });
+        });
+        return Object.assign({}, state, {
+          unReadUrlLists: clone
+        });
+      } else {
+        return Object.assign({}, state, {
+          unReadUrlLists: [
+            ...state.unReadUrlLists,
+            {
+              index:
+                state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
+              url: action.newUnReadList,
+              name: "default name",
+              date: action.date,
+              checked: false
+            }
+          ]
+        });
+      }
     }
     case "DELETE_UNREAD_URL_LISTS": {
       return Object.assign({}, state, {

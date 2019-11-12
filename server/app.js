@@ -12,6 +12,20 @@ app.use(
   )
 );
 
+// Set the headers for incoming requests
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,PUT,POST,DELETE,OPTIONS,PATCH"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, authorization"
+  );
+  next();
+});
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 app.get("/api", async (req, res) => {
@@ -24,9 +38,9 @@ app.get("/api", async (req, res) => {
 });
 app.get("/api/urllist", async (req, res) => {
   try {
-    // const locations = await db.select().table("locations");
-    // res.json(locations);
-    res.send("Hello Coffee! - /api/urllist");
+    const locations = await db.select().table("coffeetime");
+    res.json(locations);
+    // res.send("Hello Coffee! - /api/urllist");
   } catch (err) {
     console.error("Error loading locations!", err);
     res.sendStatus(500);
