@@ -63,9 +63,11 @@ export const addUnReadUrlLists = newUnReadList => ({
   checked: false
 });
 
-export const toggleUnReadUrlCheckBox = newStatus => ({
-  type: " TOGGLE_UNREAD_CHECK_BOX",
-  newStatus
+// export const toggleUnReadUrlCheckBox = (index, isChecked) => ({
+export const toggleUnReadUrlCheckBox = index => ({
+  type: "TOGGLE_UNREAD_CHECK_BOX",
+  index
+  // checked: isChecked
 });
 
 export const addReadUrlLists = newReadList => ({
@@ -110,15 +112,16 @@ const reducer = (state = initialState, action) => {
       });
     }
     case "TOGGLE_UNREAD_CHECK_BOX": {
+      console.log("toggle");
+      console.log(state.unReadUrlLists[action.index].checked);
       return Object.assign({}, state, {
         unReadUrlLists: [
-          ...state.unReadUrlLists,
+          ...state.unReadUrlLists.slice(0, action.index),
           {
-            url: action.unReadList,
-            name: action.name,
-            date: action.date,
-            checked: action.checked
-          }
+            ...state.unReadUrlLists[action.index],
+            checked: !state.unReadUrlLists[action.index].checked
+          },
+          ...state.unReadUrlLists.slice(action.index + 1)
         ]
       });
     }

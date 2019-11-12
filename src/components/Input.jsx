@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
-import { changeCurrentView, addUnReadUrlLists } from "../redux/redux";
+import { addUnReadUrlLists } from "../redux/redux";
 import "../styles/styles.css";
 
 class Input extends Component {
@@ -27,7 +27,6 @@ class Input extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentView: newView => dispatch(changeCurrentView(newView)),
     setUnReadUrlLists: inputURL => dispatch(addUnReadUrlLists(inputURL))
   };
 };

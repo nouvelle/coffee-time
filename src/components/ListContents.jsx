@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "./Input.jsx";
+import { toggleUnReadUrlCheckBox } from "../redux/redux";
 import "../styles/styles.css";
 
 class ListContents extends Component {
-  checkBtn = date => {
-    // console.log(date);
+  checkBtn = index => e => {
+    console.log(index, e.target.checked);
+    this.props.changeUnReadUrlCheckBox(index);
   };
   render() {
     const unReadUrlLists = this.props.unReadUrlLists;
@@ -20,8 +22,7 @@ class ListContents extends Component {
             <div className="urlList" key={i}>
               <Checkbox
                 checked={unReadUrlList.checked}
-                onClick={this.checkBtn(unReadUrlList.date)}
-                // value="checkedB"
+                onChange={this.checkBtn(unReadUrlList.index)}
                 color="primary"
               />
               <div className="url">
@@ -41,5 +42,9 @@ const mapStateToProps = state => {
     unReadUrlLists: state.unReadUrlLists
   };
 };
-
-export default connect(mapStateToProps)(ListContents);
+const mapDispatchToProps = dispatch => {
+  return {
+    changeUnReadUrlCheckBox: index => dispatch(toggleUnReadUrlCheckBox(index))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ListContents);
