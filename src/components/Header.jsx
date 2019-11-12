@@ -21,18 +21,16 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">Coffee Time</Typography>
-            <Tabs>
-              <Tab label="LIST" onClick={this.changeViewList} />
-              <Tab label="READ" onClick={this.changeViewRead} />
-              <Tab label="HISTORY" onClick={this.changeViewHistory} />
-            </Tabs>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Coffee Time</Typography>
+          <Tabs>
+            <Tab label="LIST" onClick={this.changeViewList} />
+            <Tab label="READ" onClick={this.changeViewRead} />
+            <Tab label="HISTORY" onClick={this.changeViewHistory} />
+          </Tabs>
+        </Toolbar>
+      </AppBar>
     );
   }
 }

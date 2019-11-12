@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
-import List from "@material-ui/core/List";
+import Container from "@material-ui/core/Container";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
@@ -17,7 +14,7 @@ class ReadContents extends Component {
     const preventDefault = event => event.preventDefault();
 
     return (
-      <div className="contents readContents">
+      <Container>
         <h1>Hello, it's coffee time!</h1>
         <div className="urllistArea">
           {console.log("all READ list", readUrlLists)}
@@ -33,7 +30,7 @@ class ReadContents extends Component {
             </ListItem>
           ))}
         </div>
-      </div>
+      </Container>
     );
   }
 }

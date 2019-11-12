@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Container from "@material-ui/core/Container";
 import Header from "./Header.jsx";
 import ListContents from "./ListContents.jsx";
 import ReadContents from "./ReadContents.jsx";
@@ -22,21 +23,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="app">
-          <Header />
+      <Container id="app">
+        <Header />
 
-          {(() => {
-            if (this.props.currentView === "LIST") {
-              return <ListContents />;
-            } else if (this.props.currentView === "READ") {
-              return <ReadContents />;
-            } else {
-              return <HistoryContents />;
-            }
-          })()}
-        </div>
-      </div>
+        {(() => {
+          if (this.props.currentView === "LIST") {
+            return <ListContents />;
+          } else if (this.props.currentView === "READ") {
+            return <ReadContents />;
+          } else {
+            return <HistoryContents />;
+          }
+        })()}
+      </Container>
     );
   }
 }

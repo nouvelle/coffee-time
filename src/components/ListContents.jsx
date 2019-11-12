@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Container from "@material-ui/core/Container";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -46,11 +47,11 @@ class ListContents extends Component {
     const preventDefault = event => event.preventDefault();
 
     return (
-      <div className="contents listContents">
+      <Container>
         <Input />
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           onClick={this.changeRead}
           className="changeRead"
         >
@@ -77,7 +78,7 @@ class ListContents extends Component {
             </ListItem>
           ))}
         </List>
-      </div>
+      </Container>
     );
   }
 }

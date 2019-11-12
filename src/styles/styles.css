@@ -3,33 +3,21 @@ body {
   padding: 0;
   font-family: "Comfortaa", cursive;
 }
-.app {
+#app {
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
-.contents {
-  height: 500px;
-  padding: 10px;
-}
 .changeRead {
-  text-align: center;
+  float: right;
 }
 .inputArea {
   width: 90%;
-  height: 70px;
-  line-height: 70px;
-  vertical-align: middle;
-  /* background: #fff; */
   margin: 20px auto;
   padding: 5px;
 }
 #urlInput {
-  border: 0;
-  padding: 10px;
-  font-size: 1.3em;
-  color: #270c03;
-  border: solid 1px #ccc;
   width: 80%;
-  height: 45px;
 }
 input[type="url"]:focus,
 input[type="button"]:focus,

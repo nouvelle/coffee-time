@@ -1,25 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { addUnReadUrlLists } from "../redux/redux";
 import "../styles/styles.css";
 
 class Input extends Component {
   // Click Button
   addURL = () => {
-    const inputURL = document.getElementById("urlInput").value;
+    const inputURL = document.getElementById("standard-basic").value;
     if (inputURL !== "") this.props.setUnReadUrlLists(inputURL);
   };
 
   render() {
     return (
       <div className="inputArea">
-        <label>
-          <input type="url" name="url" id="urlInput" />
-        </label>
-        <Button variant="contained" color="primary" onClick={this.addURL}>
-          ADD
-        </Button>
+        <form noValidate autoComplete="off">
+          <div>
+            <TextField
+              id="standard-basic"
+              className="inputArea"
+              label="Please input URL"
+              margin="normal"
+            />
+            <Button variant="contained" color="primary" onClick={this.addURL}>
+              ADD
+            </Button>
+          </div>
+        </form>
       </div>
     );
   }
