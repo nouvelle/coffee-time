@@ -23,7 +23,12 @@ class Input extends Component {
               label="Please input URL"
               margin="normal"
             />
-            <Button variant="contained" color="primary" onClick={this.addURL}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.addURL}
+              className="addBtn"
+            >
               ADD
             </Button>
           </div>

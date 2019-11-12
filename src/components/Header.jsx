@@ -23,7 +23,9 @@ class Header extends Component {
     return (
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Coffee Time</Typography>
+          <Typography variant="h6" onClick={this.changeViewList}>
+            Coffee Time
+          </Typography>
           <Tabs>
             <Tab label="LIST" onClick={this.changeViewList} />
             <Tab label="READ" onClick={this.changeViewRead} />

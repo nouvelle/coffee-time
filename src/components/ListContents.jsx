@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
+import Icon from "@material-ui/core/Icon";
 import Input from "./Input.jsx";
 import {
   toggleUnReadUrlCheckBox,
@@ -49,18 +50,19 @@ class ListContents extends Component {
   };
   render() {
     const unReadUrlLists = this.props.unReadUrlLists;
-    const preventDefault = event => event.preventDefault();
 
     return (
       <Container>
         <Input />
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
+          size="small"
           onClick={this.changeRead}
-          className="changeRead"
+          id="changeRead"
+          startIcon={<Icon>check</Icon>}
         >
-          CHANGE TO READ
+          READ
         </Button>
         <List>
           {console.log("all list", unReadUrlLists)}
@@ -69,18 +71,18 @@ class ListContents extends Component {
               <ListItemAvatar>
                 <Avatar alt="Avatar" src={`../images/image.png`} />
               </ListItemAvatar>
-              <Link href={unReadUrlList.url} onClick={preventDefault}>
+              <Link href={unReadUrlList.url} target="_blank">
                 {unReadUrlList.url}
               </Link>
-              <ListItemText
+              {/* <ListItemText
                 className="date"
                 primary={this.changeDate(unReadUrlList.date)}
-              />
+              /> */}
               <ListItemSecondaryAction>
                 <Checkbox
                   checked={unReadUrlList.checked}
                   onChange={this.checkBtn(unReadUrlList.index)}
-                  color="primary"
+                  color="secondary"
                 />
               </ListItemSecondaryAction>
             </ListItem>

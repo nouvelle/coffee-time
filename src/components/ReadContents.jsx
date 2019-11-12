@@ -16,7 +16,6 @@ class ReadContents extends Component {
   };
   render() {
     const readUrlLists = this.props.readUrlLists;
-    const preventDefault = event => event.preventDefault();
 
     return (
       <Container>
@@ -28,13 +27,13 @@ class ReadContents extends Component {
               <ListItemAvatar>
                 <Avatar alt="Avatar" src={`../images/image.png`} />
               </ListItemAvatar>
-              <Link href={readUrlList.url} onClick={preventDefault}>
+              <Link href={readUrlList.url} target="_blank">
                 {readUrlList.url}
               </Link>
-              <ListItemText
+              {/* <ListItemText
                 className="date"
                 primary={this.changeDate(readUrlList.date)}
-              />
+              /> */}
             </ListItem>
           ))}
         </div>

@@ -8,8 +8,13 @@ body {
   padding: 0;
   width: 100%;
 }
-.changeRead {
-  /* float: right; */
+#changeRead {
+  position: absolute;
+  right: 55px;
+  top: 170px;
+}
+.MuiListItem-gutters {
+  word-break: break-all;
 }
 .inputArea {
   width: 90%;
@@ -26,4 +31,15 @@ input[type="button"]:focus,
 }
 input[type="url"]:focus {
   background: #ececec;
+}
+
+@media screen and (min-width: 759px) {
+  .addBtn {
+    top: 20px;
+  }
+  .changeRead {
+    position: absolute;
+    right: 25px;
+    top: 190px;
+  }
 }
