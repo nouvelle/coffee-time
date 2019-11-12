@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
 import Input from "./Input.jsx";
 import {
   toggleUnReadUrlCheckBox,
@@ -36,6 +43,7 @@ class ListContents extends Component {
   };
   render() {
     const unReadUrlLists = this.props.unReadUrlLists;
+    const preventDefault = event => event.preventDefault();
 
     return (
       <div className="contents listContents">
@@ -48,22 +56,27 @@ class ListContents extends Component {
         >
           CHANGE TO READ
         </Button>
-        <div className="urllistArea">
+        <List>
           {console.log("all list", unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
-            <div className="urlList" key={i}>
-              <Checkbox
-                checked={unReadUrlList.checked}
-                onChange={this.checkBtn(unReadUrlList.index)}
-                color="primary"
-              />
-              <div className="url">
-                <a href={`${unReadUrlList.url}`}>{unReadUrlList.url}</a>
-              </div>
-              <div className="date">{unReadUrlList.date}</div>
-            </div>
+            <ListItem key={i}>
+              <ListItemAvatar>
+                <Avatar alt="Avatar" src={`../images/image.png`} />
+              </ListItemAvatar>
+              <Link href={unReadUrlList.url} onClick={preventDefault}>
+                {unReadUrlList.url}
+              </Link>
+              <ListItemText className="date" primary={unReadUrlList.date} />
+              <ListItemSecondaryAction>
+                <Checkbox
+                  checked={unReadUrlList.checked}
+                  onChange={this.checkBtn(unReadUrlList.index)}
+                  color="primary"
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
           ))}
-        </div>
+        </List>
       </div>
     );
   }
