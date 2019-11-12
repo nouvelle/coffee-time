@@ -32,7 +32,9 @@ input[type="button"]:focus,
 input[type="url"]:focus {
   background: #ececec;
 }
-
+.sbuxImg {
+  width: 100%;
+}
 @media screen and (min-width: 759px) {
   .addBtn {
     top: 20px;
