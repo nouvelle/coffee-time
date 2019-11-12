@@ -7,7 +7,7 @@
     "client": "react-scripts start",
     "server": "nodemon server",
     "build": "react-scripts build",
-    "heroku-postbuild": "yarn rollback && yarn migrate && yarn seed && yarn build",
+    "heroku-postbuild": "yarn build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "migrate": "knex migrate:latest --knexfile ./knexfile.js",
