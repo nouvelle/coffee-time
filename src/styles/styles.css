@@ -9,7 +9,7 @@ body {
   width: 100%;
 }
 .changeRead {
-  float: right;
+  /* float: right; */
 }
 .inputArea {
   width: 90%;

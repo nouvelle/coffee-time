@@ -10,14 +10,14 @@ const initialState = {
       index: 0,
       url: "https://www.starbucks.co.jp/",
       name: "HOMEPAGE - STARBUCK JAPAN",
-      date: "201911112056",
+      date: 1573550388676,
       checked: true
     },
     {
       index: 1,
       url: "https://stories.starbucks.com/",
       name: "HOMEPAGE - STARBUCK US",
-      date: "201911101245",
+      date: 1573550405225,
       checked: false
     },
     {
@@ -25,7 +25,7 @@ const initialState = {
       url:
         "https://stories.starbucks.com/stories/2019/make-merry-at-starbucks-this-holiday/",
       name: "Make merry at Starbucks this holiday season",
-      date: "201911111034",
+      date: 1573550405225,
       checked: false
     }
   ],
@@ -34,20 +34,20 @@ const initialState = {
       url: "https://martinfowler.com/bliki/ContinuousDelivery.html",
       name: "ContinuousDelivery",
       date: "201911051000",
-      readDate: "201911061000"
+      readDate: 1573550405225
     },
     {
       url: "https://will.koffel.org/post/2014/12-factor-apps-in-plain-english/",
       name: "12 FACTOR APPS IN PLAIN ENGLISH",
       date: "201911091710",
-      readDate: "201911061100"
+      readDate: 1573550405225
     },
     {
       url:
         "https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2",
       name: "How Redux Connect compares to the new Redux Hooks.",
       date: "201911011840",
-      readDate: "201911061100"
+      readDate: 1573550405225
     }
   ]
 };
@@ -62,7 +62,7 @@ export const addUnReadUrlLists = newUnReadList => ({
   type: "ADD_UNREAD_URL_LISTS",
   unReadList: newUnReadList,
   name: "DEFAULT NAME",
-  date: String(new Date()),
+  date: Date.now(),
   checked: false
 });
 
@@ -79,7 +79,7 @@ export const toggleUnReadUrlCheckBox = index => ({
 export const addReadUrlLists = newReadList => ({
   type: "ADD_READ_URL_LISTS",
   newReadList,
-  readDate: String(new Date())
+  readDate: Date.now()
 });
 
 export const getUnReadUrlLists = getUnReadList => ({
