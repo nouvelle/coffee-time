@@ -5,7 +5,7 @@ import Header from "./Header.jsx";
 import ListContents from "./ListContents.jsx";
 import ReadContents from "./ReadContents.jsx";
 import HistoryContents from "./HistoryContents.jsx";
-import { getUnReadUrlListsAsync } from "../redux/redux";
+import { getAllUrlListsAsync } from "../redux/redux";
 import "../styles/styles.css";
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getUnReadUrlListsAsync();
+    this.props.getAllUrlListsAsync();
   }
 
   render() {
@@ -47,9 +47,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getUnReadUrlListsAsync: () => dispatch(getUnReadUrlListsAsync)
+    getAllUrlListsAsync: () => dispatch(getAllUrlListsAsync)
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default connect(mapStateToProps)(App);

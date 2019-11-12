@@ -16,9 +16,14 @@ export const changeCurrentView = newView => ({
   newView
 });
 
-export const addUnReadUrlLists = newUnReadList => ({
-  type: "ADD_UNREAD_URL_LISTS",
-  newUnReadList,
+export const addUrlLists = newURLList => ({
+  type: "ADD_URL_LISTS",
+  newURLList,
+  date: Date.now()
+});
+export const addUnReadUrlLists = newURLList => ({
+  type: "ADD_UN_READ_URL_LISTS",
+  newURLList,
   date: Date.now()
 });
 
@@ -38,18 +43,8 @@ export const addReadUrlLists = newReadList => ({
   readDate: Date.now()
 });
 
-export const getUnReadUrlLists = getUnReadList => ({
-  type: "GET_UNREAD_URL_LISTS",
-  getUnReadList
-});
-
-export const getReadUrlLists = getReadList => ({
-  type: "GET_READ_URL_LISTS",
-  getReadList
-});
-
 // ACTION CREATER
-export const getUnReadUrlListsAsync = async dispatch => {
+export const getAllUrlListsAsync = async dispatch => {
   const domain = document.domain;
   let urllist;
   if (domain === "localhost") {
@@ -57,7 +52,8 @@ export const getUnReadUrlListsAsync = async dispatch => {
   } else {
     urllist = await axios.get(`/api/urllist`);
   }
-  return dispatch(addUnReadUrlLists(urllist.data));
+  console.log(urllist.data);
+  return dispatch(addUrlLists(urllist.data));
 };
 
 // REDUCERS
@@ -66,39 +62,55 @@ const reducer = (state = initialState, action) => {
     case "CURRENT_VIEW": {
       return Object.assign({}, state, { currentView: action.newView });
     }
-    case "ADD_UNREAD_URL_LISTS": {
+    case "ADD_URL_LISTS": {
       if (state.unReadUrlLists.length === 0)
         state.unReadUrlLists = initialState.unReadUrlLists;
+      if (state.readUrlLists.length === 0)
+        state.readUrlLists = initialState.readUrlLists;
 
-      if (Array.isArray(action.newUnReadList)) {
-        const clone = state.unReadUrlLists.concat();
-        action.newUnReadList.forEach(list => {
-          clone.push({
+      const unReadClone = state.unReadUrlLists.concat();
+      const readClone = state.readUrlLists.concat();
+      action.newURLList.forEach(list => {
+        if (!list.isRead) {
+          unReadClone.push({
             index: list.id,
             url: list.URL,
             name: list.name,
             date: list.date,
-            checked: list.checked
+            checked: list.isRead
           });
-        });
-        return Object.assign({}, state, {
-          unReadUrlLists: clone
-        });
-      } else {
-        return Object.assign({}, state, {
-          unReadUrlLists: [
-            ...state.unReadUrlLists,
-            {
-              index:
-                state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
-              url: action.newUnReadList,
-              name: "default name",
-              date: action.date,
-              checked: false
-            }
-          ]
-        });
-      }
+        } else {
+          readClone.push({
+            index: list.id,
+            url: list.URL,
+            name: list.name,
+            date: list.date,
+            checked: list.isRead
+          });
+        }
+      });
+      return Object.assign({}, state, {
+        unReadUrlLists: unReadClone,
+        readUrlLists: readClone
+      });
+    }
+    case "ADD_UN_READ_URL_LISTS": {
+      if (state.unReadUrlLists.length === 0)
+        state.unReadUrlLists = initialState.unReadUrlLists;
+
+      return Object.assign({}, state, {
+        unReadUrlLists: [
+          ...state.unReadUrlLists,
+          {
+            index:
+              state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
+            url: action.newURLList,
+            name: "default name",
+            date: action.date,
+            checked: false
+          }
+        ]
+      });
     }
     case "DELETE_UNREAD_URL_LISTS": {
       return Object.assign({}, state, {
@@ -130,12 +142,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         readUrlLists: clone
       });
-    }
-    case "GET_UNREAD_URL_LISTS": {
-      return state;
-    }
-    case "GET_READ_URL_LISTS": {
-      return state;
     }
     default:
       return state;
