@@ -51,7 +51,12 @@ export const getReadUrlLists = getReadList => ({
 // ACTION CREATER
 export const getUnReadUrlListsAsync = async dispatch => {
   const domain = document.domain;
-  const urllist = await axios.get(`http://${domain}:9000/api/urllist`);
+  let urllist;
+  if (domain === "localhost") {
+    urllist = await axios.get(`http://${domain}:9000/api/urllist`);
+  } else {
+    urllist = await axios.get(`/api/urllist`);
+  }
   return dispatch(addUnReadUrlLists(urllist.data));
 };
 
