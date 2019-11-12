@@ -1,68 +1,125 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**This was created during my time as a student at [Code Chrysalis](https://www.codechrysalis.io/).**
 
-## Available Scripts
+# Site keeper for Coffee Time ☕
 
-In the project directory, you can run:
+![image](https://github.com/nouvelle/coffee-time/blob/master/images/top.png?raw=true)
 
-### `yarn start`
+You can check out the app on [Heroku](https://coffeee-time.herokuapp.com/)!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. [About](#About)
+1. [User's manual](#User's%20manual)
+1. [Development](#Development)
+1. [Other command](#Other%20command)
+1. [Technology used](#Technology%20used)
+1. [Future features](#Future%20features)
+1. [Contributing](#Contributing)
+1. [License](#License)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# About
 
-### `yarn test`
+You can save the URLs you want to read later and read them together later.  
+You can save what you have read, so you can read it immediately if you want to read it again.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# User's manual
 
-### `yarn build`
+User's manual
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Development
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Follow this guide to set up your environment etc.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Database
 
-### `yarn eject`
+This project assumes a Postgres database, naturally, this is not included in the package.json file, so must be installed separately.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If you are on Windows using WSL, [this blogpost](https://medium.com/@harshityadav95/postgresql-in-windows-subsystem-for-linux-wsl-6dc751ac1ff3) is very helpful.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a database called `coffeetime`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Create a `.config.js` file in the project root with this format:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+module.exports = {
+  db: {
+    client: "postgresql",
+    connection: process.env.DATABASE_URL || {
+      host: process.env.DB_HOST || "127.0.0.1",
+      port: process.env.DB_PORT || 5432,
+      database: process.env.DB_NAME || "coffeetime",
+      user: "exampleUsername", // <= Your command line username
+      password: "examplePassword", // <= Your command line
+    }
+  },
+};
 
-## Learn More
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To clone and run this application, you'll need Git and Node.js (which comes with yarn) installed on your computer.  
+From your command line:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Downloading and installing steps**
 
-### Code Splitting
+1. Clone this repository
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+$ git clone https://github.com/nouvelle/coffee-time.git
+```
 
-### Analyzing the Bundle Size
+2. Go into the repository
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```bash
+$ cd coffee-time
+```
 
-### Making a Progressive Web App
+3. Install dependencies
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```bash
+$ yarn
+```
 
-### Advanced Configuration
+4. Create database, Run migrations and set up the database
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```bash
+$ yarn migrate
+```
 
-### Deployment
+5. Run the app
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```bash
+$ yarn start
+```
 
-### `yarn build` fails to minify
+# Other command
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- To roll back migrations
+
+```bash
+$ yarn rollback
+```
+
+- To insert test data
+
+```bash
+$ yarn seed
+```
+
+# Technology used
+
+This software uses the following open source packages:
+![image](https://github.com/nouvelle/coffee-time/blob/master/images/technology.png?raw=true)
+
+# Future features
+
+For now, you can ...
+
+I will be adding more ...
+
+We will also add more ...
+
+# Contributing
+
+Pull requests are welcome!! 😊
+
+# License
+
+[MIT](https://choosealicense.com/licenses/mit/)
