@@ -10,7 +10,7 @@ exports.up = function(knex) {
       .notNullable() // add a not-null constraint to this column
       .index(); // index it
 
-    t.integer("date", 15) // maximum length of 15 characters
+    t.string("date", 15) // maximum length of 15 characters
       .index(); // index it
 
     t.string("name", 100) // maximum length of 100 characters
@@ -18,7 +18,7 @@ exports.up = function(knex) {
 
     t.boolean("isRead");
 
-    t.integer("readDate", 15) // maximum length of 15 characters
+    t.string("readDate", 15) // maximum length of 15 characters
       .index(); // index it
 
     t.string("thumbnail", 10000); // maximum length of 10000 characters

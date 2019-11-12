@@ -33,20 +33,20 @@ const initialState = {
     {
       url: "https://martinfowler.com/bliki/ContinuousDelivery.html",
       name: "ContinuousDelivery",
-      date: "201911051000",
+      date: 1573550388676,
       readDate: 1573550405225
     },
     {
       url: "https://will.koffel.org/post/2014/12-factor-apps-in-plain-english/",
       name: "12 FACTOR APPS IN PLAIN ENGLISH",
-      date: "201911091710",
+      date: 1573550388676,
       readDate: 1573550405225
     },
     {
       url:
         "https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2",
       name: "How Redux Connect compares to the new Redux Hooks.",
-      date: "201911011840",
+      date: 1573550388676,
       readDate: 1573550405225
     }
   ]
