@@ -6,19 +6,6 @@ body {
 .app {
   width: 100%;
 }
-.header {
-  height: 60px;
-  background: #00653e;
-  /* background: #edebe9; */
-  /* background: #563b2f; */
-  display: flex;
-  justify-content: flex-end;
-}
-.link {
-  color: #fff;
-  font-size: 24px;
-  margin: 20px;
-}
 .contents {
   height: 500px;
   padding: 10px;

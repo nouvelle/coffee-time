@@ -8,12 +8,13 @@ class ReadContents extends Component {
 
     return (
       <div className="contents readContents">
+        <h1>Hello, it's coffee time!</h1>
         <div className="urllistArea">
           {console.log("all READ list", readUrlLists)}
           {readUrlLists.map((readUrlList, i) => (
             <div className="urlList" key={i}>
               <div className="url">
-                <a href={`${readUrlList.url}`}>{readUrlList.name}</a>
+                <a href={`${readUrlList.url}`}>{readUrlList.url}</a>
               </div>
               <div className="date">{readUrlList.date}</div>
             </div>

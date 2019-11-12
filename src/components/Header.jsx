@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeCurrentView } from "../redux/redux";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import "../styles/styles.css";
 
 class Header extends Component {
@@ -16,16 +21,17 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <div onClick={this.changeViewList} className="listLink link">
-          LIST
-        </div>
-        <div onClick={this.changeViewRead} className="readLink link">
-          READ
-        </div>
-        <div onClick={this.changeViewHistory} className="historyLink link">
-          HISTORY
-        </div>
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">Coffee Time</Typography>
+            <Tabs>
+              <Tab label="LIST" onClick={this.changeViewList} />
+              <Tab label="READ" onClick={this.changeViewRead} />
+              <Tab label="HISTORY" onClick={this.changeViewHistory} />
+            </Tabs>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }

@@ -58,7 +58,7 @@ class ListContents extends Component {
                 color="primary"
               />
               <div className="url">
-                <a href={`${unReadUrlList.url}`}>{unReadUrlList.name}</a>
+                <a href={`${unReadUrlList.url}`}>{unReadUrlList.url}</a>
               </div>
               <div className="date">{unReadUrlList.date}</div>
             </div>

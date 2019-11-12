@@ -24,8 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app">
-          <Header className="header" />
-          <h1>Hello, it's coffee time!</h1>
+          <Header />
 
           {(() => {
             if (this.props.currentView === "LIST") {
