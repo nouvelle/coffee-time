@@ -42,7 +42,7 @@ class ListContents extends Component {
     );
     this.props.addReadUrlLists(newReadList);
   };
-  changeData = date => {
+  changeDate = date => {
     const d = new Date(date);
     const dispDate = d.toLocaleDateString();
     return dispDate;
@@ -65,7 +65,6 @@ class ListContents extends Component {
         <List>
           {console.log("all list", unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
-            //  console.log(unReadUrlList.date)
             <ListItem key={i}>
               <ListItemAvatar>
                 <Avatar alt="Avatar" src={`../images/image.png`} />
@@ -73,10 +72,9 @@ class ListContents extends Component {
               <Link href={unReadUrlList.url} onClick={preventDefault}>
                 {unReadUrlList.url}
               </Link>
-              {/* <ListItemText className="date" primary={unReadUrlList.date} /> */}
               <ListItemText
                 className="date"
-                primary={this.changeData(unReadUrlList.date)}
+                primary={this.changeDate(unReadUrlList.date)}
               />
               <ListItemSecondaryAction>
                 <Checkbox

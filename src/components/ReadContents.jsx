@@ -9,6 +9,11 @@ import Link from "@material-ui/core/Link";
 import "../styles/styles.css";
 
 class ReadContents extends Component {
+  changeDate = date => {
+    const d = new Date(date);
+    const dispDate = d.toLocaleDateString();
+    return dispDate;
+  };
   render() {
     const readUrlLists = this.props.readUrlLists;
     const preventDefault = event => event.preventDefault();
@@ -26,7 +31,10 @@ class ReadContents extends Component {
               <Link href={readUrlList.url} onClick={preventDefault}>
                 {readUrlList.url}
               </Link>
-              <ListItemText className="date" primary={readUrlList.date} />
+              <ListItemText
+                className="date"
+                primary={this.changeDate(readUrlList.date)}
+              />
             </ListItem>
           ))}
         </div>
