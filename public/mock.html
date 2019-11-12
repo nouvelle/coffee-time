@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+    />
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -20,10 +23,6 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
 
-    <!-- <link
-      href="https://www.starbucks.com/weblx/assets/pattern-library/style.e1e050e968307b6d2965.css"
-      rel="stylesheet"
-    /> -->
     <link rel="apple-touch-icon" href="logo192.png" />
     <title>Coffee Time</title>
     <style>
@@ -37,8 +36,9 @@
       }
       .header {
         height: 60px;
-        /* background: #2f6443; */
-        background: #270c03;
+        background: #00653e;
+        /* background: #edebe9; */
+        /* background: #563b2f; */
         display: flex;
         justify-content: flex-end;
       }
@@ -62,7 +62,7 @@
         margin: 20px auto;
         padding: 5px;
       }
-      .url {
+      #urlInput {
         border: 0;
         padding: 10px;
         font-size: 1.3em;
@@ -81,7 +81,7 @@
         color: #fff;
         border-bottom: solid 4px #2f6443;
         border-radius: 3px;
-        width: 100px;
+        width: 10%;
         height: 46px;
         margin-left: 20px;
       }
@@ -99,6 +99,8 @@
         height: 35px;
         margin: 5px 0;
         background: #cbcbcb;
+        display: flex;
+        justify-content: space-between;
       }
       input[type="url"]:focus,
       input[type="button"]:focus,
@@ -122,7 +124,7 @@
         </div>
         <div class="contents">
           <div class="inputArea">
-            <label><input type="url" name="url" class="url"/></label>
+            <label><input type="url" name="url" id="urlInput"/></label>
             <button class="btn">ADD</button>
           </div>
           <div class="urllistArea">

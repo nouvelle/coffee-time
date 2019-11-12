@@ -20,9 +20,6 @@ class Input extends Component {
         <Button variant="contained" color="primary" onClick={this.addURL}>
           ADD
         </Button>
-        {/* <button className="btn" onClick={this.addURL}>
-          ADD
-        </button> */}
       </div>
     );
   }

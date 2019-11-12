@@ -43,25 +43,6 @@ body {
   width: 80%;
   height: 45px;
 }
-.btn {
-  position: relative;
-  top: -5px;
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  background: #3b8a59;
-  color: #fff;
-  border-bottom: solid 4px #2f6443;
-  border-radius: 3px;
-  width: 10%;
-  height: 46px;
-  margin-left: 20px;
-}
-.btn:active {
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);
-  border-bottom: none;
-}
 .urllistArea {
   width: 90%;
   background: #fff;
