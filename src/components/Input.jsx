@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
 import { changeCurrentView, addUnReadUrlLists } from "../redux/redux";
 import "../styles/styles.css";
 
@@ -16,9 +17,12 @@ class Input extends Component {
         <label>
           <input type="url" name="url" id="urlInput" />
         </label>
-        <button className="btn" onClick={this.addURL}>
+        <Button variant="contained" color="primary" onClick={this.addURL}>
           ADD
-        </button>
+        </Button>
+        {/* <button className="btn" onClick={this.addURL}>
+          ADD
+        </button> */}
       </div>
     );
   }
