@@ -1,13 +1,12 @@
 **This was created during my time as a student at [Code Chrysalis](https://www.codechrysalis.io/).**
 
-# Site keeper for Coffee Time ☕
-
-![image](https://github.com/nouvelle/coffee-time/blob/master/images/top.png?raw=true)
+# Site clip for your Coffee Time ☕
 
 You can check out the app on [Heroku](https://coffeee-time.herokuapp.com/)!
 
+![image](https://github.com/nouvelle/coffee-time/blob/master/images/top.png?raw=true)
+
 1. [About](#About)
-1. [User's manual](#User's%20manual)
 1. [Development](#Development)
 1. [Other command](#Other%20command)
 1. [Technology used](#Technology%20used)
@@ -17,12 +16,8 @@ You can check out the app on [Heroku](https://coffeee-time.herokuapp.com/)!
 
 # About
 
-You can save the URLs you want to read later and read them together later.  
+If you use this app, you can save the URLs you want to read later and read them together later.  
 You can save what you have read, so you can read it immediately if you want to read it again.
-
-# User's manual
-
-User's manual
 
 # Development
 
@@ -110,11 +105,11 @@ This software uses the following open source packages:
 
 # Future features
 
-For now, you can ...
+For now, you can check the URL
 
-I will be adding more ...
+I will be adding more function. Show the history of your reading, login function.
 
-We will also add more ...
+I will also add more interactive animations.
 
 # Contributing
 
