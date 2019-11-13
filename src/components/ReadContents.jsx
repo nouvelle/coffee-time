@@ -19,7 +19,7 @@ class ReadContents extends Component {
 
     return (
       <Container>
-        <h1>Hello, it's coffee time!</h1>
+        <h1></h1>
         <div className="urllistArea">
           {console.log("all READ list", readUrlLists)}
           {readUrlLists.map((readUrlList, i) => (

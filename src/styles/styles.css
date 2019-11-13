@@ -14,7 +14,13 @@ body {
   top: 170px;
 }
 .MuiListItem-gutters {
+  font-size: 14px;
   word-break: break-all;
+}
+.MuiListItem-gutters:hover {
+  box-shadow: 0 1px 0 #fff, 5px 5px 10px rgba(230, 230, 230, 0.8);
+  transform: scale(1.005);
+  animation: 3s both;
 }
 .inputArea {
   width: 90%;
@@ -32,6 +38,13 @@ input[type="button"]:focus,
 input[type="url"]:focus {
   background: #ececec;
 }
+.logo {
+  width: 35px;
+  margin: 5px 10px 0 0;
+}
+.titel {
+  display: none;
+}
 .sbuxImg {
   width: 100%;
 }
@@ -43,5 +56,9 @@ input[type="url"]:focus {
     position: absolute;
     right: 25px;
     top: 190px;
+  }
+  .titel {
+    display: inline;
+    vertical-align: 7px;
   }
 }

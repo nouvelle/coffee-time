@@ -45,15 +45,18 @@ app.get("/api/urllist", async (req, res) => {
     res.sendStatus(500);
   }
 });
-// app.post("/api/urllist", async (req, res) => {
-//   try {
-//     const locations = await db.select().table("coffeetime");
-//     res.json(locations);
-//   } catch (err) {
-//     console.error("Error loading locations!", err);
-//     res.sendStatus(500);
-//   }
-// });
+app.post("/api/urllist", async (req, res) => {
+  const body = req.body;
+  console.log(body);
+  try {
+    // const locations = await db.select().table("coffeetime");
+    // res.json(body);
+    res.send(req.body);
+  } catch (err) {
+    console.error("Error loading locations!", err);
+    res.sendStatus(500);
+  }
+});
 
 // Always return the main index.html, since we are developing a single page application
 app.get("*", (req, res) => {

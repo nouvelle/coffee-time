@@ -24,10 +24,11 @@ class Header extends Component {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" onClick={this.changeViewList}>
-            Coffee Time
+            <img src={`../favicon.ico`} className="logo" />
+            <span class="titel">coffee time</span>
           </Typography>
           <Tabs>
-            <Tab label="LIST" onClick={this.changeViewList} />
+            <Tab label="CLIP" onClick={this.changeViewList} />
             <Tab label="READ" onClick={this.changeViewRead} />
             <Tab label="HISTORY" onClick={this.changeViewHistory} />
           </Tabs>
