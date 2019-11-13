@@ -61,4 +61,7 @@ input[type="url"]:focus {
     display: inline;
     vertical-align: 7px;
   }
+  .sbuxImg {
+    width: 60%;
+  }
 }
