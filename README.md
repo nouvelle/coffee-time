@@ -105,11 +105,13 @@ This software uses the following open source packages:
 
 # Future features
 
-For now, you can check the URL
+For now, you can see the site clip data.  
+I will be adding more function.
 
-I will be adding more function. Show the history of your reading, login function.
-
-I will also add more interactive animations.
+- Save added data and read information into database.
+- Show the history of your reading.
+- Login function.
+- Interactive animations.
 
 # Contributing
 
