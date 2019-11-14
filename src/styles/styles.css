@@ -14,7 +14,10 @@ body {
   top: 170px;
 }
 .MuiListItemIcon-root {
-  min-width: 40px;
+  min-width: 35px !important;
+}
+.MuiListItem-secondaryAction {
+  padding-right: 88px !important;
 }
 .MuiListItem-gutters {
   font-size: 14px;
