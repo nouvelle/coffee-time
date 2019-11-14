@@ -11,24 +11,26 @@ import Link from "@material-ui/core/Link";
 import Icon from "@material-ui/core/Icon";
 import Input from "./Input.jsx";
 import Fab from "@material-ui/core/Fab";
-import { deleteUnReadUrlLists, addReadUrlLists } from "../redux/redux";
+import { deleteUnReadUrlLists, addReadUrlListsAsync } from "../redux/redux";
 import "../styles/styles.css";
 
 class ListContents extends Component {
-  changeRead = index => {
+  changeRead = date => {
     const unReadUrlLists = this.props.unReadUrlLists;
 
-    // DELETE FROM UN READ LIST
-    const nonDeleteList = unReadUrlLists.filter(
-      unReadUrlList => index !== unReadUrlList.index
-    );
-    this.props.deleteUnReadUrlLists(nonDeleteList);
-
-    // ADD TO READ LIST
+    // ADD TO READ LIST (= DELETE FROM UN READ LIST)
     const newReadList = unReadUrlLists.filter(
-      unReadUrlList => index === unReadUrlList.index
+      unReadUrlList => date === unReadUrlList.date
     );
+    console.log("newReadList", newReadList);
     this.props.addReadUrlLists(newReadList);
+
+    // STILL UN READ LIST
+    const nonDeleteList = unReadUrlLists.filter(
+      unReadUrlList => date !== unReadUrlList.date
+    );
+    console.log("nonDeleteList", nonDeleteList);
+    this.props.deleteUnReadUrlLists(nonDeleteList);
   };
   changeDate = date => {
     const d = new Date(Number(date));
@@ -60,7 +62,7 @@ class ListContents extends Component {
                   size="small"
                   color="secondary"
                   aria-label="add"
-                  onClick={() => this.changeRead(unReadUrlList.index)}
+                  onClick={() => this.changeRead(unReadUrlList.date)}
                 >
                   <Icon>check</Icon>
                 </Fab>
@@ -82,7 +84,7 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteUnReadUrlLists: nonDeleteList =>
       dispatch(deleteUnReadUrlLists(nonDeleteList)),
-    addReadUrlLists: newReadList => dispatch(addReadUrlLists(newReadList))
+    addReadUrlLists: newReadList => dispatch(addReadUrlListsAsync(newReadList))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ListContents);
