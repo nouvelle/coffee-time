@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { addIncrementNo, addUnReadUrlLists } from "../redux/redux";
+import { addIncrementNo, addUnReadUrlListsAsync } from "../redux/redux";
 import "../styles/styles.css";
 
 class Input extends Component {
@@ -42,7 +42,7 @@ class Input extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     addIncrementNo: inputURL => dispatch(addIncrementNo()),
-    setUnReadUrlLists: inputURL => dispatch(addUnReadUrlLists(inputURL))
+    setUnReadUrlLists: inputURL => dispatch(addUnReadUrlListsAsync(inputURL))
   };
 };
 export default connect(null, mapDispatchToProps)(Input);

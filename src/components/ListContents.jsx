@@ -11,11 +11,7 @@ import Link from "@material-ui/core/Link";
 import Icon from "@material-ui/core/Icon";
 import Input from "./Input.jsx";
 import Fab from "@material-ui/core/Fab";
-import {
-  toggleUnReadUrlCheckBox,
-  deleteUnReadUrlLists,
-  addReadUrlLists
-} from "../redux/redux";
+import { deleteUnReadUrlLists, addReadUrlLists } from "../redux/redux";
 import "../styles/styles.css";
 
 class ListContents extends Component {
@@ -84,7 +80,6 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    changeUnReadUrlCheckBox: index => dispatch(toggleUnReadUrlCheckBox(index)),
     deleteUnReadUrlLists: nonDeleteList =>
       dispatch(deleteUnReadUrlLists(nonDeleteList)),
     addReadUrlLists: newReadList => dispatch(addReadUrlLists(newReadList))

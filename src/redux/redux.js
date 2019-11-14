@@ -28,8 +28,8 @@ export const addUrlLists = newURLList => ({
 });
 export const addUnReadUrlLists = newURLList => ({
   type: "ADD_UN_READ_URL_LISTS",
-  newURLList,
-  date: Date.now()
+  newURLList
+  // date: Date.now()
 });
 
 export const deleteUnReadUrlLists = nonDeleteUnReadListArr => ({
@@ -37,10 +37,10 @@ export const deleteUnReadUrlLists = nonDeleteUnReadListArr => ({
   nonDeleteUnReadListArr
 });
 
-export const toggleUnReadUrlCheckBox = index => ({
-  type: "TOGGLE_UNREAD_CHECK_BOX",
-  index
-});
+// export const toggleUnReadUrlCheckBox = index => ({
+//   type: "TOGGLE_UNREAD_CHECK_BOX",
+//   index
+// });
 
 export const addReadUrlLists = newReadList => ({
   type: "ADD_READ_URL_LISTS",
@@ -57,8 +57,22 @@ export const getAllUrlListsAsync = async dispatch => {
   } else {
     urllist = await axios.get(`/api/urllist`);
   }
-  console.log(urllist.data);
   return dispatch(addUrlLists(urllist.data));
+};
+export const addUnReadUrlListsAsync = addUrl => async dispatch => {
+  const domain = document.domain;
+  let reqUrl;
+  domain === "localhost"
+    ? (reqUrl = `http://${domain}:9000/api/urllist`)
+    : (reqUrl = "/api/urllist");
+
+  const urllist = await axios.post(reqUrl, {
+    URL: addUrl,
+    date: Date.now(),
+    name: "default name",
+    isRead: false
+  });
+  return dispatch(addUnReadUrlLists(urllist.data));
 };
 
 // REDUCERS
@@ -107,11 +121,10 @@ const reducer = (state = initialState, action) => {
         unReadUrlLists: [
           ...state.unReadUrlLists,
           {
-            index: state.incrementNo,
-            url: action.newURLList,
-            name: "default name",
-            date: action.date,
-            checked: false
+            url: action.newURLList.URL,
+            name: action.newURLList.name,
+            date: action.newURLList.date,
+            checked: action.newURLList.isRead
           }
         ]
       });
@@ -121,18 +134,18 @@ const reducer = (state = initialState, action) => {
         unReadUrlLists: action.nonDeleteUnReadListArr
       });
     }
-    case "TOGGLE_UNREAD_CHECK_BOX": {
-      return Object.assign({}, state, {
-        unReadUrlLists: [
-          ...state.unReadUrlLists.slice(0, action.index),
-          {
-            ...state.unReadUrlLists[action.index],
-            checked: !state.unReadUrlLists[action.index].checked
-          },
-          ...state.unReadUrlLists.slice(action.index + 1)
-        ]
-      });
-    }
+    // case "TOGGLE_UNREAD_CHECK_BOX": {
+    //   return Object.assign({}, state, {
+    //     unReadUrlLists: [
+    //       ...state.unReadUrlLists.slice(0, action.index),
+    //       {
+    //         ...state.unReadUrlLists[action.index],
+    //         checked: !state.unReadUrlLists[action.index].checked
+    //       },
+    //       ...state.unReadUrlLists.slice(action.index + 1)
+    //     ]
+    //   });
+    // }
     case "ADD_READ_URL_LISTS": {
       const clone = state.readUrlLists.concat();
       action.newReadList.forEach(list => {
