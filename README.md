@@ -109,7 +109,7 @@ This software uses the following open source packages:
 For now, you can see the site clip data.  
 I will be adding more function.
 
-- [ ] Save added data and read information into database.
+- [x] Save added data and read information into database.
 - [ ] Show the history of your reading.
 - [ ] Login function.
 - [ ] Interactive animations.
