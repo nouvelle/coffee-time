@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Container from "@material-ui/core/Container";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+// import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
@@ -19,7 +19,7 @@ class ReadContents extends Component {
 
     return (
       <Container>
-        <h1></h1>
+        <h1>Your clips history</h1>
         <div className="urllistArea">
           {console.log("all READ list", readUrlLists)}
           {readUrlLists.map((readUrlList, i) => (
