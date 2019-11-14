@@ -4,7 +4,8 @@
 
 You can check out the app on [Heroku](https://coffeee-time.herokuapp.com/)!
 
-![image](https://github.com/nouvelle/coffee-time/blob/master/images/top.png?raw=true)
+![image](https://github.com/nouvelle/coffee-time/blob/master/images/desktop.png?raw=true)
+![image](https://github.com/nouvelle/coffee-time/blob/master/images/smartphone.png?raw=true)
 
 1. [About](#About)
 1. [Development](#Development)
