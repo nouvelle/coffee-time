@@ -24,8 +24,8 @@ class Header extends Component {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" onClick={this.changeViewList}>
-            <img src={`../favicon.ico`} className="logo" />
-            <span class="titel">coffee time</span>
+            <img src={`../favicon.ico`} className="logo" alt="logo" />
+            <span className="title">coffee time</span>
           </Typography>
           <Tabs>
             <Tab label="CLIP" onClick={this.changeViewList} />

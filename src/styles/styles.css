@@ -42,7 +42,7 @@ input[type="url"]:focus {
   width: 35px;
   margin: 5px 10px 0 0;
 }
-.titel {
+.title {
   display: none;
 }
 .sbuxImg {
@@ -57,7 +57,7 @@ input[type="url"]:focus {
     right: 25px;
     top: 190px;
   }
-  .titel {
+  .title {
     display: inline;
     vertical-align: 7px;
   }

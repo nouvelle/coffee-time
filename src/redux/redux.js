@@ -23,8 +23,7 @@ export const addUrlLists = newURLList => ({
 });
 export const addUnReadUrlLists = newURLList => ({
   type: "ADD_UN_READ_URL_LISTS",
-  newURLList,
-  date: Date.now()
+  newURLList
 });
 
 export const deleteUnReadUrlLists = nonDeleteUnReadListArr => ({
@@ -32,33 +31,45 @@ export const deleteUnReadUrlLists = nonDeleteUnReadListArr => ({
   nonDeleteUnReadListArr
 });
 
-export const toggleUnReadUrlCheckBox = index => ({
-  type: "TOGGLE_UNREAD_CHECK_BOX",
-  index
-});
-
 export const addReadUrlLists = newReadList => ({
   type: "ADD_READ_URL_LISTS",
-  newReadList,
-  readDate: Date.now()
+  newReadList
 });
 
 // ACTION CREATER
+const domain = document.domain;
+let reqUrl;
+domain === "localhost"
+  ? (reqUrl = `http://${domain}:9000/api/urllist`)
+  : (reqUrl = "/api/urllist");
+
 export const getAllUrlListsAsync = async dispatch => {
-  const domain = document.domain;
-  let urllist;
-  if (domain === "localhost") {
-    urllist = await axios.get(`http://${domain}:9000/api/urllist`);
-  } else {
-    urllist = await axios.get(`/api/urllist`);
-  }
-  console.log(urllist.data);
+  const urllist = await axios.get(reqUrl);
   return dispatch(addUrlLists(urllist.data));
+};
+export const addUnReadUrlListsAsync = addUrl => async dispatch => {
+  const urllist = await axios.post(reqUrl, {
+    URL: addUrl,
+    date: Date.now(),
+    name: "default name",
+    isRead: false
+  });
+  return dispatch(addUnReadUrlLists(urllist.data));
+};
+export const addReadUrlListsAsync = newReadList => async dispatch => {
+  await axios.patch(reqUrl, {
+    date: newReadList[0].date,
+    readDate: Date.now()
+  });
+  return dispatch(addReadUrlLists(newReadList));
 };
 
 // REDUCERS
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_INCREMENT_NO": {
+      return Object.assign({}, state, { incrementNo: state.incrementNo + 1 });
+    }
     case "CURRENT_VIEW": {
       return Object.assign({}, state, { currentView: action.newView });
     }
@@ -95,19 +106,14 @@ const reducer = (state = initialState, action) => {
       });
     }
     case "ADD_UN_READ_URL_LISTS": {
-      if (state.unReadUrlLists.length === 0)
-        state.unReadUrlLists = initialState.unReadUrlLists;
-
       return Object.assign({}, state, {
         unReadUrlLists: [
           ...state.unReadUrlLists,
           {
-            index:
-              state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
-            url: action.newURLList,
-            name: "default name",
-            date: action.date,
-            checked: false
+            url: action.newURLList.URL,
+            name: action.newURLList.name,
+            date: action.newURLList.date,
+            checked: action.newURLList.isRead
           }
         ]
       });
@@ -117,18 +123,6 @@ const reducer = (state = initialState, action) => {
         unReadUrlLists: action.nonDeleteUnReadListArr
       });
     }
-    case "TOGGLE_UNREAD_CHECK_BOX": {
-      return Object.assign({}, state, {
-        unReadUrlLists: [
-          ...state.unReadUrlLists.slice(0, action.index),
-          {
-            ...state.unReadUrlLists[action.index],
-            checked: !state.unReadUrlLists[action.index].checked
-          },
-          ...state.unReadUrlLists.slice(action.index + 1)
-        ]
-      });
-    }
     case "ADD_READ_URL_LISTS": {
       const clone = state.readUrlLists.concat();
       action.newReadList.forEach(list => {
@@ -136,7 +130,7 @@ const reducer = (state = initialState, action) => {
           url: list.url,
           name: list.name,
           date: list.date,
-          readDate: action.readDate
+          readDate: list.readDate
         });
       });
       return Object.assign({}, state, {

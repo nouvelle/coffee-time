@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Container from "@material-ui/core/Container";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Icon from "@material-ui/core/Icon";
+// import ListItemText from "@material-ui/core/ListItemText";
 import Link from "@material-ui/core/Link";
 import "../styles/styles.css";
 
@@ -19,14 +19,17 @@ class ReadContents extends Component {
 
     return (
       <Container>
-        <h1></h1>
+        <h1>Your clips history</h1>
         <div className="urllistArea">
           {console.log("all READ list", readUrlLists)}
           {readUrlLists.map((readUrlList, i) => (
             <ListItem key={i}>
-              <ListItemAvatar>
+              <ListItemIcon>
+                <Icon>bookmarkborder</Icon>
+              </ListItemIcon>
+              {/* <ListItemAvatar>
                 <Avatar alt="Avatar" src={`../images/image.png`} />
-              </ListItemAvatar>
+              </ListItemAvatar> */}
               <Link href={readUrlList.url} target="_blank">
                 {readUrlList.url}
               </Link>

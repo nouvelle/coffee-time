@@ -7,7 +7,11 @@ export default class HistoryContents extends Component {
     return (
       <Container>
         <div className="chartArea">
-          <img src={`../images/history.gif`} className="sbuxImg" />
+          <img
+            src={`../images/history.gif`}
+            className="sbuxImg"
+            alt="history's alternative"
+          />
         </div>
       </Container>
     );
