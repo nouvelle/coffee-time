@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { addUnReadUrlLists } from "../redux/redux";
+import { addIncrementNo, addUnReadUrlLists } from "../redux/redux";
 import "../styles/styles.css";
 
 class Input extends Component {
   // Click Button
   addURL = () => {
     const inputURL = document.getElementById("standard-basic").value;
+    this.props.addIncrementNo();
     if (inputURL !== "") this.props.setUnReadUrlLists(inputURL);
   };
 
@@ -40,6 +41,7 @@ class Input extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
+    addIncrementNo: inputURL => dispatch(addIncrementNo()),
     setUnReadUrlLists: inputURL => dispatch(addUnReadUrlLists(inputURL))
   };
 };

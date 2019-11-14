@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 // initial STATE
 const initialState = {
+  incrementNo: 0,
   currentView: "LIST",
   checkedUnRead: [],
   unReadUrlLists: [],
@@ -11,6 +12,10 @@ const initialState = {
 };
 
 // ACTIONS
+export const addIncrementNo = () => ({
+  type: "ADD_INCREMENT_NO"
+});
+
 export const changeCurrentView = newView => ({
   type: "CURRENT_VIEW",
   newView
@@ -59,6 +64,9 @@ export const getAllUrlListsAsync = async dispatch => {
 // REDUCERS
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_INCREMENT_NO": {
+      return Object.assign({}, state, { incrementNo: state.incrementNo + 1 });
+    }
     case "CURRENT_VIEW": {
       return Object.assign({}, state, { currentView: action.newView });
     }
@@ -95,15 +103,11 @@ const reducer = (state = initialState, action) => {
       });
     }
     case "ADD_UN_READ_URL_LISTS": {
-      if (state.unReadUrlLists.length === 0)
-        state.unReadUrlLists = initialState.unReadUrlLists;
-
       return Object.assign({}, state, {
         unReadUrlLists: [
           ...state.unReadUrlLists,
           {
-            index:
-              state.unReadUrlLists[state.unReadUrlLists.length - 1].index + 1,
+            index: state.incrementNo,
             url: action.newURLList,
             name: "default name",
             date: action.date,

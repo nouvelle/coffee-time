@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
@@ -12,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 import Icon from "@material-ui/core/Icon";
 import Input from "./Input.jsx";
+import Fab from "@material-ui/core/Fab";
 import {
   toggleUnReadUrlCheckBox,
   deleteUnReadUrlLists,
@@ -20,26 +19,18 @@ import {
 import "../styles/styles.css";
 
 class ListContents extends Component {
-  checkBtn = indexVal => e => {
+  changeRead = index => {
     const unReadUrlLists = this.props.unReadUrlLists;
-    let index;
-    unReadUrlLists.forEach((unReadUrlLists, i) => {
-      if (unReadUrlLists.index === indexVal) index = i;
-    });
-    this.props.changeUnReadUrlCheckBox(index);
-  };
-  changeRead = () => {
+
     // DELETE FROM UN READ LIST
-    const unReadUrlLists = this.props.unReadUrlLists;
     const nonDeleteList = unReadUrlLists.filter(
-      unReadUrlList => !unReadUrlList.checked
+      unReadUrlList => index !== unReadUrlList.index
     );
-    if (nonDeleteList.length !== unReadUrlLists.length)
-      this.props.deleteUnReadUrlLists(nonDeleteList);
+    this.props.deleteUnReadUrlLists(nonDeleteList);
 
     // ADD TO READ LIST
     const newReadList = unReadUrlLists.filter(
-      unReadUrlList => unReadUrlList.checked
+      unReadUrlList => index === unReadUrlList.index
     );
     this.props.addReadUrlLists(newReadList);
   };
@@ -54,16 +45,6 @@ class ListContents extends Component {
     return (
       <Container>
         <Input />
-        <Button
-          variant="contained"
-          color="secondary"
-          size="small"
-          onClick={this.changeRead}
-          id="changeRead"
-          startIcon={<Icon>check</Icon>}
-        >
-          READ
-        </Button>
         <List>
           {console.log("all list", unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
@@ -79,11 +60,14 @@ class ListContents extends Component {
                 primary={this.changeDate(unReadUrlList.date)}
               /> */}
               <ListItemSecondaryAction>
-                <Checkbox
-                  checked={unReadUrlList.checked}
-                  onChange={this.checkBtn(unReadUrlList.index)}
+                <Fab
+                  size="small"
                   color="secondary"
-                />
+                  aria-label="add"
+                  onClick={() => this.changeRead(unReadUrlList.index)}
+                >
+                  <Icon>check</Icon>
+                </Fab>
               </ListItemSecondaryAction>
             </ListItem>
           ))}
