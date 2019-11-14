@@ -4,13 +4,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-// import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
-import Icon from "@material-ui/core/Icon";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+import Button from "@material-ui/core/Button";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Input from "./Input.jsx";
-import Fab from "@material-ui/core/Fab";
 import { deleteUnReadUrlLists, addReadUrlListsAsync } from "../redux/redux";
 import "../styles/styles.css";
 
@@ -47,9 +45,9 @@ class ListContents extends Component {
           {console.log("all list", unReadUrlLists)}
           {unReadUrlLists.map((unReadUrlList, i) => (
             <ListItem key={i}>
-              <ListItemAvatar>
-                <Avatar alt="Avatar" src={`../images/image.png`} />
-              </ListItemAvatar>
+              <ListItemIcon>
+                <BookmarkIcon color="primary"></BookmarkIcon>
+              </ListItemIcon>
               <Link href={unReadUrlList.url} target="_blank">
                 {unReadUrlList.url}
               </Link>
@@ -58,14 +56,14 @@ class ListContents extends Component {
                 primary={this.changeDate(unReadUrlList.date)}
               /> */}
               <ListItemSecondaryAction>
-                <Fab
+                <Button
+                  variant="outlined"
                   size="small"
-                  color="secondary"
-                  aria-label="add"
+                  color="primary"
                   onClick={() => this.changeRead(unReadUrlList.date)}
                 >
-                  <Icon>check</Icon>
-                </Fab>
+                  READ
+                </Button>
               </ListItemSecondaryAction>
             </ListItem>
           ))}
@@ -74,6 +72,22 @@ class ListContents extends Component {
     );
   }
 }
+
+// <div className={classes.demo}>
+//   <List dense={dense}>
+//     {generate(
+//       <ListItem>
+//         <ListItemIcon>
+//           <FolderIcon />
+//         </ListItemIcon>
+//         <ListItemText
+//           primary="Single-line item"
+//           secondary={secondary ? "Secondary text" : null}
+//         />
+//       </ListItem>
+//     )}
+//   </List>
+// </div>
 
 const mapStateToProps = state => {
   return {
