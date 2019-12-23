@@ -21,24 +21,27 @@ class ReadContents extends Component {
       <Container>
         <h1>Your clips history</h1>
         <div className="urllistArea">
-          {console.log("all READ list", readUrlLists)}
-          {readUrlLists.map((readUrlList, i) => (
-            <ListItem key={i}>
-              <ListItemIcon>
-                <Icon>bookmarkborder</Icon>
-              </ListItemIcon>
-              {/* <ListItemAvatar>
-                <Avatar alt="Avatar" src={`../images/image.png`} />
-              </ListItemAvatar> */}
-              <Link href={readUrlList.url} target="_blank">
-                {readUrlList.url}
-              </Link>
-              {/* <ListItemText
-                className="date"
-                primary={this.changeDate(readUrlList.date)}
-              /> */}
-            </ListItem>
-          ))}
+          {readUrlLists ? (
+            readUrlLists.map((readUrlList, i) => (
+              <ListItem key={i}>
+                <ListItemIcon>
+                  <Icon>bookmarkborder</Icon>
+                </ListItemIcon>
+                {/* <ListItemAvatar>
+                  <Avatar alt="Avatar" src={`../images/image.png`} />
+                </ListItemAvatar> */}
+                <Link href={readUrlList.url} target="_blank">
+                  {readUrlList.url}
+                </Link>
+                {/* <ListItemText
+                  className="date"
+                  primary={this.changeDate(readUrlList.date)}
+                /> */}
+              </ListItem>
+            ))
+          ) : (
+            <ListItem />
+          )}
         </div>
       </Container>
     );

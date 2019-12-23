@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: "List",
+      currentView: "CLIP",
       urlLists: []
     };
   }
@@ -27,7 +27,7 @@ class App extends Component {
         <Header />
 
         {(() => {
-          if (this.props.currentView === "LIST") {
+          if (this.props.currentView === "CLIP") {
             return <ListContents />;
           } else if (this.props.currentView === "READ") {
             return <ReadContents />;

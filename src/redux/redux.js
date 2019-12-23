@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 
 // initial STATE
 const initialState = {
-  currentView: "LIST",
+  currentView: "CLIP",
   checkedUnRead: [],
   unReadUrlLists: [],
   readUrlLists: []
@@ -71,6 +71,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { incrementNo: state.incrementNo + 1 });
     }
     case "CURRENT_VIEW": {
+      console.log(action);
       return Object.assign({}, state, { currentView: action.newView });
     }
     case "ADD_URL_LISTS": {

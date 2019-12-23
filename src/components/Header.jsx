@@ -9,17 +9,18 @@ import Tab from "@material-ui/core/Tab";
 import "../styles/styles.css";
 
 class Header extends Component {
-  changeViewList = () => {
-    this.props.setCurrentView("LIST");
-  };
-  changeViewRead = () => {
-    this.props.setCurrentView("READ");
-  };
-  changeViewHistory = () => {
-    this.props.setCurrentView("HISTORY");
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabList: ["CLIP", "READ", "HISTORY"]
+    };
+  }
+  changeCurrentView = newView => {
+    this.props.setCurrentView(newView);
   };
 
   render() {
+    const { tabList } = this.state;
     return (
       <AppBar position="static">
         <Toolbar>
@@ -28,9 +29,16 @@ class Header extends Component {
             <span className="title">coffee time</span>
           </Typography>
           <Tabs>
-            <Tab label="CLIP" onClick={this.changeViewList} />
-            <Tab label="READ" onClick={this.changeViewRead} />
-            <Tab label="HISTORY" onClick={this.changeViewHistory} />
+            {tabList.map((tabs, i) => {
+              return (
+                <Tab
+                  label={tabs}
+                  onClick={() => this.changeCurrentView(tabs)}
+                  key={i}
+                  value={i}
+                />
+              );
+            })}
           </Tabs>
         </Toolbar>
       </AppBar>

@@ -42,31 +42,30 @@ class ListContents extends Component {
       <Container>
         <Input />
         <List>
-          {console.log("all list", unReadUrlLists)}
-          {unReadUrlLists.map((unReadUrlList, i) => (
-            <ListItem key={i}>
-              <ListItemIcon>
-                <BookmarkIcon color="primary"></BookmarkIcon>
-              </ListItemIcon>
-              <Link href={unReadUrlList.url} target="_blank">
-                {unReadUrlList.url}
-              </Link>
-              {/* <ListItemText
-                className="date"
-                primary={this.changeDate(unReadUrlList.date)}
-              /> */}
-              <ListItemSecondaryAction>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  onClick={() => this.changeRead(unReadUrlList.date)}
-                >
-                  READ
-                </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
+          {unReadUrlLists ? (
+            unReadUrlLists.map((unReadUrlList, i) => (
+              <ListItem key={i}>
+                <ListItemIcon>
+                  <BookmarkIcon color="primary"></BookmarkIcon>
+                </ListItemIcon>
+                <Link href={unReadUrlList.url} target="_blank">
+                  {unReadUrlList.url}
+                </Link>
+                <ListItemSecondaryAction>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="primary"
+                    onClick={() => this.changeRead(unReadUrlList.date)}
+                  >
+                    READ
+                  </Button>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))
+          ) : (
+            <ListItem />
+          )}
         </List>
       </Container>
     );
